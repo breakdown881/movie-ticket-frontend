@@ -1,5 +1,6 @@
 import { UserRole, AuthProvider } from './api.types';
 
+export {UserRole, AuthProvider} from './api.types'
 export interface User {
   id: string;
   email: string;
