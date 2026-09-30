@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import authApi from '../services/auth.api';
 import { ArrowRight, Loader2, Lock, Mail, Phone, UserIcon } from 'lucide-react';
+import { RegisterPayload } from '../../../types/auth.types';
 
 const registerSchema = z.object({
     fullName: z.string().min(2, 'Họ và tên tối thiểu 2 ký tự'),
@@ -33,7 +34,7 @@ export function RegisterPage() {
     const onSubmit = async (data: RegisterFormData) => {
         setIsLoading(true)
         try {
-            const response = await authApi.register(data)
+            const response = await authApi.register(data as RegisterPayload)
             setAuth(response.user, response.accessToken)
             toast.success('Đăng ký tài khoản thành công!')
             navigate('/', {replace: true})

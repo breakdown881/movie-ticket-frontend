@@ -3,7 +3,7 @@ import { AuthResponse, ForgotPasswordPayload, LoginPayload, RegisterPayload, Res
 
 export const authApi = {
     // Đăng nhập bằng Email/Password
-    Login: async (payload: LoginPayload): Promise<AuthResponse> => {
+    login: async (payload: LoginPayload): Promise<AuthResponse> => {
         return axiosClient.post('/auth/login', payload)
     },
 

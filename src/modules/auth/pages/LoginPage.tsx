@@ -7,6 +7,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import authApi from '../services/auth.api';
 import { toast } from 'sonner';
 import { ArrowRight, Loader2, Lock, Mail } from 'lucide-react';
+import { LoginPayload } from '../../../types/auth.types';
 
 // 1. Zod Validation Schema
 const loginSchema = z.object({
@@ -38,7 +39,7 @@ export function LoginPage() {
     const onSubmit = async (data: LoginFormData) => {
         setIsLoading(true)
         try {
-            const response = await authApi.Login(data)
+            const response = await authApi.login(data as LoginPayload)
             setAuth(response.user, response.accessToken)
             toast.success(`Chào mừng trở lại, ${response.user.fullName || response.user.email}!`)
             navigate(redirectUrl, { replace: true })
