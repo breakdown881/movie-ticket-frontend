@@ -8,6 +8,7 @@ import AdminRoute from "./AdminRoute"
 import HomePage from "../modules/movies/pages/HomePage"
 import MovieDetailPage from "../modules/movies/pages/MovieDetailPage"
 import { ShowtimePicker } from "../modules/showtimes/components/ShowtimePicker"
+import { SeatSelectionPage } from "../modules/booking/pages/SeatSelectionPage"
 
 export function AppRoutes() {
     return (
@@ -26,21 +27,28 @@ export function AppRoutes() {
                         </div>
                     }
                 />
+
+                {/* Route Chọn Ghế */}
+                <Route path="/booking/seat-selection/:showtimeId" element={<SeatSelectionPage />} />
+
                 {/* 2. Protected Routes (Yêu cầu đăng nhập) */}
                 <Route element={<ProtectedRoute />}>
                     <Route path="/profile" element={<div className="p-8 text-center text-white">Trang Thông Tin Cá Nhân</div>} />
                     <Route path="/my-tickets" element={<div className="p-8 text-center text-white">Trang Lịch Sử Vé Của Tôi</div>} />
                 </Route>
             </Route>
+
             {/* 3. Auth Routes */}
             <Route path="/auth" element={<AuthLayout />}>
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
             </Route>
+
             {/* 4. Admin Portal Routes */}
             <Route element={<AdminRoute />}>
                 <Route path="/admin/dashboard" element={<div className="p-8 text-center text-cinema-gold text-2xl">Bảng Điều Khiển Admin (Dashboard)</div>} />
             </Route>
+            
             {/* 5. Fallback 404 */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
