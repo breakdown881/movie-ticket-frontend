@@ -9,6 +9,8 @@ import HomePage from "../modules/movies/pages/HomePage"
 import MovieDetailPage from "../modules/movies/pages/MovieDetailPage"
 import { ShowtimePicker } from "../modules/showtimes/components/ShowtimePicker"
 import { SeatSelectionPage } from "../modules/booking/pages/SeatSelectionPage"
+import PaymentReturnPage from "../modules/booking/pages/PaymentReturnPage"
+import CheckoutPage from "../modules/booking/pages/CheckoutPage"
 
 export function AppRoutes() {
     return (
@@ -31,8 +33,12 @@ export function AppRoutes() {
                 {/* Route Chọn Ghế */}
                 <Route path="/booking/seat-selection/:showtimeId" element={<SeatSelectionPage />} />
 
+                {/* Route Kết Quả Thanh Toán & Vé Điện Tử QR */}
+                <Route path="/booking/payment-return" element={<PaymentReturnPage />} />
+
                 {/* 2. Protected Routes (Yêu cầu đăng nhập) */}
                 <Route element={<ProtectedRoute />}>
+                    <Route path="/booking/checkout/:reservationId" element={<CheckoutPage />} />
                     <Route path="/profile" element={<div className="p-8 text-center text-white">Trang Thông Tin Cá Nhân</div>} />
                     <Route path="/my-tickets" element={<div className="p-8 text-center text-white">Trang Lịch Sử Vé Của Tôi</div>} />
                 </Route>
