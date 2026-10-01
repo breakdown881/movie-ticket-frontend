@@ -11,6 +11,13 @@ import { ShowtimePicker } from "../modules/showtimes/components/ShowtimePicker"
 import { SeatSelectionPage } from "../modules/booking/pages/SeatSelectionPage"
 import PaymentReturnPage from "../modules/booking/pages/PaymentReturnPage"
 import CheckoutPage from "../modules/booking/pages/CheckoutPage"
+import AdminLayout from "../common/layouts/AdminLayout"
+import AdminDashboardPage from "../modules/admin/pages/AdminDashboardPage"
+import AdminMoviesPage from "../modules/admin/pages/AdminMoviesPage"
+import AdminHallsPage from "../modules/admin/pages/AdminHallsPage"
+import AdminShowtimesPage from "../modules/admin/pages/AdminShowtimesPage"
+import AdminDiscountsPage from "../modules/admin/pages/AdminDiscountsPage"
+import AdminUsersPage from "../modules/admin/pages/AdminUsersPage"
 
 export function AppRoutes() {
     return (
@@ -52,7 +59,14 @@ export function AppRoutes() {
 
             {/* 4. Admin Portal Routes */}
             <Route element={<AdminRoute />}>
-                <Route path="/admin/dashboard" element={<div className="p-8 text-center text-cinema-gold text-2xl">Bảng Điều Khiển Admin (Dashboard)</div>} />
+                <Route element={<AdminLayout />}>
+                    <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                    <Route path="/admin/movies" element={<AdminMoviesPage />} />
+                    <Route path="/admin/halls" element={<AdminHallsPage />} />
+                    <Route path="/admin/showtimes" element={<AdminShowtimesPage />} />
+                    <Route path="/admin/discounts" element={<AdminDiscountsPage />} />
+                    <Route path="/admin/users" element={<AdminUsersPage />} />
+                </Route>
             </Route>
             
             {/* 5. Fallback 404 */}
